@@ -7,7 +7,7 @@ contract TestToken is Token {
 
     address echidna_caller = msg.sender;
 
-    constructor() public {
+    constructor() {
         balances[echidna_caller] = 10000;
     }
 
