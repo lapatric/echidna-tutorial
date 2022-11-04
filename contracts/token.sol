@@ -3,7 +3,11 @@ pragma solidity ^0.8.7;
 
 contract Ownership{
     address owner = msg.sender;
-    function Owner() public {
+    // Fails test1.sol -> Fix: Make constructor
+    // function Owner() public {
+    //     owner = msg.sender;
+    // }
+    constructor() {
         owner = msg.sender;
     }
     modifier isOwner(){
@@ -31,6 +35,7 @@ contract Pausable is Ownership{
 contract Token is Pausable{
     mapping(address => uint) public balances;
     function transfer(address to, uint value) ifNotPaused public{
+        require(balances[msg.sender] >= value);
         balances[msg.sender] -= value;
         balances[to] += value;
     }
