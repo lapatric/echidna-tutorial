@@ -4,12 +4,12 @@ pragma solidity ^0.8.7;
 contract Ownership{
     address owner = msg.sender;
     // Fails test1.sol -> Fix: Make constructor
-    // function Owner() public {
-    //     owner = msg.sender;
-    // }
-    constructor() {
+    function Owner() public {
         owner = msg.sender;
     }
+    // constructor() {
+    //     owner = msg.sender;
+    // }
     modifier isOwner(){
         require(owner == msg.sender);
         _;
@@ -35,8 +35,14 @@ contract Pausable is Ownership{
 contract Token is Pausable{
     mapping(address => uint) public balances;
     function transfer(address to, uint value) ifNotPaused public{
-        require(balances[msg.sender] >= value);
+        // require(balances[msg.sender] >= value);
+        uint256 initial_balance_from = balances[msg.sender];
+        uint256 initial_balance_to = balances[to];
+
         balances[msg.sender] -= value;
         balances[to] += value;
+
+        assert(balances[msg.sender] <= initial_balance_from);
+        assert(balances[to] >= initial_balance_to);
     }
 }
