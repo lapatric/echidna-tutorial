@@ -42,7 +42,7 @@ contract Token is Pausable{
         balances[msg.sender] -= value;
         balances[to] += value;
 
-        assert(balances[msg.sender] <= initial_balance_from);
+        assert(balances[msg.sender] >= initial_balance_from);
         assert(balances[to] >= initial_balance_to);
     }
 }

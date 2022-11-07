@@ -51,6 +51,9 @@ If contract.sol contains multiple contracts, you can specify the target:
 
 ```bash
 echidna-test contract.sol --contract MyContract
+
+# Additionally, you can run Echidna with a config file
+echidna-test contract.sol --config config.yaml --contract ContractName
 ```
 
 ## Assertions

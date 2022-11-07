@@ -1,0 +1,7 @@
+testMode: assertion
+coverage: true
+corpusDir: corpus
+# filterBlacklist: true
+# filterFunctions: ["C.reset1()", "C.reset2()"]
+# filterBlacklist: false
+# filterFunctions: ["C.f(uint256)", "C.g(uint256)", "C.h(uint256)", "C.i()"]
